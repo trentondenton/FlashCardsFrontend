@@ -11,7 +11,7 @@ export default class FlashCards extends Component {
       isFlipped: false,
       redirect: false,
       selectedCardId: 1,
-      currentCards: 5,
+      currentCards: 6,
     }
 
     this.getCard = this.getCard.bind(this);
