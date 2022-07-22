@@ -92,12 +92,11 @@ export default class FlashCards extends Component {
       this.setState({
         selectedCardId: this.state.selectedCardId + 1
       })
-      this.getCard();
     }
     else {
       alert('This is the last card');
-      this.getCard();
     }
+    this.getCard();
   }
 
   previousCard() {
@@ -105,11 +104,10 @@ export default class FlashCards extends Component {
       this.setState({
         selectedCardId: this.state.selectedCardId - 1
       })
-      this.getCard();
     } else {
-      alert('This is the last card');
-      this.getCard();
+      alert('This is the first card');
     }
+    this.getCard();
   }
 
   render() {
@@ -117,6 +115,7 @@ export default class FlashCards extends Component {
       <div className="page-container">
 
         <div className="form-container">
+          <h2> DevCamp FlashCards</h2>
           <form onSubmit={this.handleSubmit}>
 
             <div className="input-container">
@@ -145,11 +144,9 @@ export default class FlashCards extends Component {
 
         <div className="cards-container">
           <>
-            {this.state.isFlipped === false ?
-              <div className="card">{this.state.cards.front}</div>
-              :
-              <div className="card">{this.state.cards.back}</div>
-            }
+
+            <div className={`card ${!this.state.isFlipped ? 'front' : 'back'}`}>{this.state.isFlipped === false ? this.state.cards.front : <div className='is-flipped'>{this.state.cards.back}</div>}</div>
+
           </>
           <div className="button-container">
             <button className="flip-btn" onClick={this.previousCard}>Previous</button>

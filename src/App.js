@@ -12,7 +12,6 @@ export default class App extends Component {
           <Routes>
             <Route path="/" element={<FlashCards />} />
           </Routes>
-
         </BrowserRouter>
       </div>
     );
