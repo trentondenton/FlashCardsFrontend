@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class FlashCards extends Component {
+export default class FlashCard extends Component {
   constructor() {
     super();
     this.state = {
