@@ -15,6 +15,7 @@ export default class FlashCards extends Component {
     }
 
     this.getCard = this.getCard.bind(this);
+    // this.getAllCards = this.getAllCards.bind(this);
     this.flipCard = this.flipCard.bind(this);
     this.nextCard = this.nextCard.bind(this);
     this.previousCard = this.previousCard.bind(this);
@@ -35,6 +36,19 @@ export default class FlashCards extends Component {
       });
   }
 
+  // getAllCards() {
+  //   axios.get('http://localhost:5000/cards')
+  //     .then(response => {
+  //       this.setState({
+  //         cards: response.data
+  //       });
+  //       console.log('State Cards', this.state.cards)
+  //     })
+  //     .catch(error => {
+  //       console.log('GCardsE', error);
+  //     });
+  // }
+
   handleSubmit(event) {
     event.preventDefault();
     let data = {
@@ -49,6 +63,10 @@ export default class FlashCards extends Component {
       })
     }
     fetch("http://localhost:5000/card", fetchData)
+
+    this.setState({
+      currentCards: this.state.currentCards + 1
+    })
     window.location.reload();
   }
 
