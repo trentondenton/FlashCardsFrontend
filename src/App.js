@@ -9,7 +9,6 @@ import Navigation from './components/Navigation';
 import FlashCard from './components/FlashCard';
 import FlashCards from './components/FlashCards';
 
-
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -73,8 +72,8 @@ export default class App extends Component {
 
   authorizedPages() {
     return [
-      <Route path="/card" component={FlashCard} />,
-      <Route path="/cards" component={FlashCards} />
+      <Route key="card" path="/card" component={FlashCard} />,
+      <Route key="cards" path="/cards" component={FlashCards} />
     ];
   }
 

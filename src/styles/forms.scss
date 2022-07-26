@@ -1,62 +1,74 @@
-//   .form-container {
-//     width: 100%;
-//     height: 100%;
-//     background-color: #ccc;
-//     text-align: center;
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #f6f6f6;
+    text-align: center;
 
-//     h2 {
-//       color: white;
-//       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.29);
-//     }
+    .form-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 250px;
+      width: 50%;
+      text-align: center;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      margin-bottom: 10px;
+      box-shadow: 1px -1px 7px 2px rgba(0, 0, 0, 0.1);
+    }
 
-//     form {
-//       width: 100%;
-//       height: 250px;
-//       display: flex;
-//       align-items: center;
-//       justify-content: space-evenly;
-//       flex-direction: column;
+    form {
+      width: 50%;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-direction: column;
 
-//       .input-container {
-//         width: 100%;
-//         height: 70%;
-//         display: flex;
-//         flex-direction: column;
-//         align-items: center;
-//         justify-content: space-evenly;
-//       }
+      .input-container {
+        width: 100%;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+      }
 
-//       input {
-//         height: 26px;
-//         padding: 5px;
-//         width: 78%;
-//         border: 3px solid transparent;
-//         border-radius: 5px;
-//         transition: 0.5s all;
+      input {
+        height: 26px;
+        padding: 5px;
+        width: 78%;
+        border: 3px solid transparent;
+        border-radius: 5px;
+        transition: 0.5s all;
 
-//         &:focus {
-//           outline: none;
-//           transition: ease-in-out;
-//           border-bottom: 3px solid #00cb79;
-//           border-radius: 5px;
-//           box-shadow: 1px -1px 7px 2px rgba(248, 248, 248, 0.276);
-//         }
-//       }
-//     }
+        &:focus {
+          outline: none;
+          transition: ease-in-out;
+          border-bottom: 3px solid #00cb79;
+          border-radius: 5px;
+          box-shadow: 1px -1px 7px 2px rgba(248, 248, 248, 0.276);
+        }
+      }
+    }
 
-//     .form-btn {
-//       background-color: #00cb79;
-//       color: #fff;
-//       border: 1px solid #f6f6f6;
-//       height: 42px;
-//       border-radius: 7px;
+    .submit-btn {
+      background-color: #00cb79;
+      color: #fff;
+      border: 1px solid #f6f6f6;
+      height: 42px;
+      width: 56px;
+      border-radius: 7px;
 
-//       &:hover {
-//         box-shadow: 1px -1px 7px 2px rgba(0, 0, 0, 0.1);
-//       }
-//     }
+      &:hover {
+        box-shadow: 1px -1px 7px 2px rgba(0, 0, 0, 0.1);
+      }
+    }
 
-//     .remove-container {
-//       height: 100px;
-//     }
-//   }
+  }

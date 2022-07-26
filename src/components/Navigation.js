@@ -1,39 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-export default class Navigation extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isExpanded: false,
-    }
-    this.handleSignout = this.handleSignOut.bind(this);
-  }
-  handleSignOut() {
+const NavigationComponent = props => {
+  const handleSignOut = () => {
     axios
       .delete("https://api.devcamp.space/logout", { withCredentials: true })
-      .then(res => {
-        if (res.status === 200) {
-          this.props.handleSuccessfulLogout();
-          this.props.history.push("/");
+      .then(response => {
+        if (response.status === 200) {
+          props.history.push("/");
+          props.handleSuccessfulLogout();
         }
-        return res.data;
+        return response.data;
       })
-      .catch(err => {
-        console.log("SignOut", err)
-      })
-  }
-  render() {
-    return (
-      <div className="navigation-container">
-        <a href="/" className="nav-link">Home</a>
-        <a href="/card" className="nav-link">Study</a>
-        {this.props.loggedInStatus === 'LOGGED_IN' ?
-          <a href="/" onClick={this.handleSignOut} to="/" className="nav-link">Logout</a>
-          :
-          <a href="/login" className="nav-link">Login</a>
-        }
-      </div>
-    )
-  }
-}
+      .catch(error => {
+        console.log("Error signing out", error);
+      });
+  };
+
+  return (
+    <div className="navigation-container">
+      <a href="/">
+        Home
+      </a>
+
+      <a href="/card">
+        Study
+      </a>
+
+      {props.loggedInStatus === "LOGGED_IN" ? (
+        <a onClick={handleSignOut}> Logout</a>
+      ) : <a href="/login" className="nav-link">Login</a>}
+    </div>
+  );
+};
+
+export default withRouter(NavigationComponent);

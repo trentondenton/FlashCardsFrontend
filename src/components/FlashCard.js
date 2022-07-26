@@ -27,7 +27,6 @@ export default class FlashCard extends Component {
         this.setState({
           cards: response.data
         });
-        console.log('State Cards', this.state.cards)
       })
       .catch(error => {
         console.log('GCardsE', error);
