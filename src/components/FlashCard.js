@@ -21,14 +21,44 @@ export default class FlashCard extends Component {
 
     this.getCard = this.getCard.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEditSubmit = this.handleEditSubmit.bind(this);
+    this.handleDeleteSubmit = this.handleDeleteSubmit.bind(this);
     this.flipCard = this.flipCard.bind(this);
     this.nextCard = this.nextCard.bind(this);
     this.addCardClick = this.addCardClick.bind(this);
+    this.editCardClick = this.editCardClick.bind(this);
     this.deleteCardClick = this.deleteCardClick.bind(this);
     this.previousCard = this.previousCard.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.getCardLength = this.getCardLength.bind(this);
   }
+
+  handleEditSubmit(event) {
+    event.preventDefault();
+    let data = {
+      front: this.state.front,
+      back: this.state.back
+    }
+
+    let fetchData = {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers: new Headers({
+        'Content-Type': 'application/json; charset=UTF-8'
+      })
+    }
+    fetch(`http://localhost:5000/card/${this.state.selectedCardId}`, fetchData)
+    this.setState({
+      editModalOpen: !this.state.editModalOpen
+    })
+  }
+
+  editCardClick() {
+    this.setState({
+      editModalOpen: !this.state.editModalOpen
+    })
+  }
+
   deleteCardClick() {
     this.setState({
       deleteModalOpen: !this.state.deleteModalOpen
@@ -39,7 +69,7 @@ export default class FlashCard extends Component {
     event.preventDefault();
     axios.delete(`http://localhost:5000/card/${this.state.selectedCardId}`)
       .then(response => {
-        console.log(response)
+        alert(response)
         this.setState({
           deleteModalOpen: !this.state.deleteModalOpen
         })
@@ -67,6 +97,7 @@ export default class FlashCard extends Component {
       addModalOpen: !this.state.addModalOpen
     })
   }
+
   getCard() {
     axios.get(`http://localhost:5000/card/${this.state.selectedCardId}`)
       .then(response => {
@@ -114,8 +145,6 @@ export default class FlashCard extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
-    console.log(this.state.front)
-    console.log(this.state.back)
   }
 
   nextCard() {
@@ -159,8 +188,10 @@ export default class FlashCard extends Component {
               isOpen={this.state.addModalOpen}
               bodyOpenClassName="modal"
               overlayClassName="modal-overlay"
+              ariaHideApp={false}
             >
               <div className="add-card-modal">
+                <h2>Add Card</h2>
                 <form onSubmit={this.handleSubmit}>
                   <label>Front</label>
                   <textarea type="text" className="front" name="front" onChange={this.handleChange} />
@@ -175,13 +206,28 @@ export default class FlashCard extends Component {
             </Modal>
 
             {/* Edit A Card */}
-            <button className="edit-btn" onClick={() => { alert('Not implemented yet') }}><FontAwesomeIcon icon={faPenToSquare} /></button>
+            <button className="edit-btn" onClick={this.editCardClick}><FontAwesomeIcon icon={faPenToSquare} /></button>
             <Modal
-              props={this.props}
               isOpen={this.state.editModalOpen}
               bodyOpenClassName="modal"
               overlayClassName="modal-overlay"
+              ariaHideApp={false}
             >
+              <div className="edit-card-modal">
+                <form onSubmit={this.handleEditSubmit}>
+                  <h2>Edit Card</h2>
+                  <p>Card ID: {this.state.selectedCardId}</p>
+                  <label>Front</label>
+                  <textarea type="text" className="front" name="front" onChange={this.handleChange} placeHolder={this.state.cards.front} />
+
+                  <label>Back</label>
+                  <textarea type="text" className="back" name="back" onChange={this.handleChange} placeHolder={this.state.cards.back} />
+
+                  <button type="submit">Edit</button>
+                  <button className="cancel-btn" onClick={this.editCardClick}>Cancel</button>
+                </form>
+              </div>
+
             </Modal>
 
             {/* Delete A Card */}
@@ -190,12 +236,14 @@ export default class FlashCard extends Component {
               isOpen={this.state.deleteModalOpen}
               bodyOpenClassName="modal"
               overlayClassName="modal-overlay"
+              ariaHideApp={false}
             >
               <div className="delete-card-modal">
                 <h2>Are you sure you want to delete the card?</h2>
-                <p>{this.state.selectedCardId}</p>
-                <button className="delete-btn" onClick={this.handleDeleteSubmit}>Yes, Delete It!</button>
-                <button className="cancel-btn" onClick={this.deleteCardClick}>Oops, No.</button>
+                <div className="delete-card-modal-buttons">
+                  <button className="delete-btn" type="button" onClick={this.handleDeleteSubmit}>Delete It!</button>
+                  <button className="cancel-btn" type="button" onClick={this.deleteCardClick}>Oops, No.</button>
+                </div>
               </div>
             </Modal>
           </div>
