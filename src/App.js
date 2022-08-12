@@ -72,8 +72,8 @@ export default class App extends Component {
 
   authorizedPages() {
     return [
-      <Route key="card" path="/card" component={FlashCard} />,
-      <Route key="cards" path="/cards" component={FlashCards} />
+      <Route key="card" exact path="/card" component={FlashCard} />,
+      <Route key="cards" exact path="/cards" component={FlashCards} />
     ];
   }
 

@@ -14,7 +14,7 @@ const NavigationComponent = props => {
         return response.data;
       })
       .catch(error => {
-        console.log("Error signing out", error);
+        alert("Error signing out", error);
       });
   };
 
@@ -29,6 +29,7 @@ const NavigationComponent = props => {
       </a>
 
       {props.loggedInStatus === "LOGGED_IN" ? (
+        // eslint-disable-next-line
         <a onClick={handleSignOut}> Logout</a>
       ) : <a href="/login" className="nav-link">Login</a>}
     </div>

@@ -19,7 +19,7 @@
       justify-content: space-around;
       background-color: #fff;
       height: 275px;
-      width: 45%;
+      width: 70%;
       border: 1px solid #ccc;
       border-radius: 7px;
       margin-bottom: 10px;
@@ -39,7 +39,7 @@
 
     .button-container {
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
       align-items: center;
       height: 42px;
       width: 100%;
@@ -51,7 +51,7 @@
       background-color: #00cb79;
       color: #fff;
       border: 1px solid #fff;
-      height: 42px;
+      height: 33px;
       width: 72px;
       border-radius: 7px;
 
@@ -60,20 +60,114 @@
       }
     }
 
-    .float-btn {
-      position: fixed;
-      bottom: 50%;
-      left: 80%;
-      background-color: #00cb79;
-      color: #fff;
-      border: 1px solid #fff;
-      height: 42px;
-      width: 72px;
-      border-radius: 7px;
+    .settings-container {
+      display: flex;
+      height: 28px;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      margin-top: 25px;
+      font-size: 28px;
+      font-weight: 800;
 
-      &:hover {
-        box-shadow: 1px -1px 7px 2px rgba(0, 0, 0, 0.1);
+      .delete-btn {
+        height: 75%;
+        color: #808080;
+        background-color: white;
+        transition: 0.4s ease-in-out;
+        border: 1px solid red;
+
+        &:hover {
+          background-color: red;
+          color: white;
+          border: 1px solid whitesmoke;
+        }
+      }
+
+      .add-btn {
+        height: 75%;
+        color: #808080;
+        background-color: white;
+        transition: 0.4s ease-in-out;
+        border: 1px solid #00cb79;
+
+        &:hover {
+          background-color: #00cb79;
+          color: white;
+          border: 1px solid whitesmoke;
+        }
+      }
+
+      .edit-btn {
+        color: #808080;
+        height: 90%;
+        background-color: white;
+        transition: 0.4s ease-in-out;
+        border: 1px solid gold;
+
+        &:hover {
+          background-color: gold;
+          color: white;
+          border: 1px solid whitesmoke;
+        }
       }
     }
+  }
+}
+
+.modal {
+  .add-card-modal {
+    height: 80vh;
+    position: absolute;
+    top: 5%;
+    left: 25%;
+    width: 50%;
+    right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #ccc;
+    align-items: center;
+    justify-content: center;
+
+    form {
+      height: 100%;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: space-between;
+      justify-content: center;
+      color: white;
+
+      textArea {
+        margin-top: 10px;
+      }
+
+      label {
+        margin-top: 10px;
+      }
+
+      button {
+        margin-top: 10px;
+        background-color: #00cb79;
+        border-radius: 7px;
+        border: none;
+        color: white;
+        font-weight: 600;
+        height: 28px;
+        width: 100%;
+
+        &:hover {
+          box-shadow: 1px -1px 7px 2px rgba(0, 0, 0, 0.1);
+        }
+
+      }
+
+      .cancel-btn {
+        background-color: red;
+      }
+    }
+
   }
 }
