@@ -153,6 +153,7 @@ export default class FlashCard extends Component {
             <button className="flip-btn" onClick={this.nextCard}><FontAwesomeIcon icon={faAngleRight} /></button>
           </div>
           <div className="settings-container">
+            {/* Add A Card */}
             <button className="add-btn" onClick={this.addCardClick}><FontAwesomeIcon icon={faPlus} /></button>
             <Modal
               isOpen={this.state.addModalOpen}
@@ -171,9 +172,19 @@ export default class FlashCard extends Component {
                   <button className="cancel-btn" onClick={this.addCardClick}>Cancel</button>
                 </form>
               </div>
-
             </Modal>
+
+            {/* Edit A Card */}
             <button className="edit-btn" onClick={() => { alert('Not implemented yet') }}><FontAwesomeIcon icon={faPenToSquare} /></button>
+            <Modal
+              props={this.props}
+              isOpen={this.state.editModalOpen}
+              bodyOpenClassName="modal"
+              overlayClassName="modal-overlay"
+            >
+            </Modal>
+
+            {/* Delete A Card */}
             <button className="delete-btn" onClick={this.deleteCardClick}><FontAwesomeIcon icon={faTrash} /></button>
             <Modal
               isOpen={this.state.deleteModalOpen}
